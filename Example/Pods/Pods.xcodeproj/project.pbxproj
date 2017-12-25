@@ -357,7 +357,7 @@
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					07105C938947535D110091D503F33E9D = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0920;
 					};
 					3D2A3D40827417AB70908A8BC030D717 = {
 						LastSwiftMigration = 0800;
@@ -538,7 +538,8 @@
 				PRODUCT_NAME = EPSignature;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -612,7 +613,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

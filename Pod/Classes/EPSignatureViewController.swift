@@ -9,9 +9,9 @@
 import UIKit
 
     // MARK: - EPSignatureDelegate
-@objc public protocol EPSignatureDelegate {
-    @objc optional    func epSignature(_: EPSignatureViewController, didCancel error : NSError)
-    @objc optional    func epSignature(_: EPSignatureViewController, didSign signatureImage : UIImage, boundingRect: CGRect)
+public protocol EPSignatureDelegate: class {
+    func epSignature(_ controller: EPSignatureViewController, didCancel error : NSError)
+    func epSignature(_ controller: EPSignatureViewController, didSign signatureImage : UIImage, boundingRect: CGRect)
 }
 
 open class EPSignatureViewController: UIViewController {
@@ -101,26 +101,26 @@ open class EPSignatureViewController: UIViewController {
     
     // MARK: - Button Actions
     
-    func onTouchCancelButton() {
-        signatureDelegate?.epSignature!(self, didCancel: NSError(domain: "EPSignatureDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"User not signed"]))
+    @objc func onTouchCancelButton() {
+        signatureDelegate?.epSignature(self, didCancel: NSError(domain: "EPSignatureDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"User not signed"]))
         dismiss(animated: true, completion: nil)
     }
 
-    func onTouchDoneButton() {
+    @objc func onTouchDoneButton() {
         if let signature = signatureView.getSignatureAsImage() {
             if switchSaveSignature.isOn {
                 let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
                 let filePath = (docPath! as NSString).appendingPathComponent("sig.data")
                 signatureView.saveSignature(filePath)
             }
-            signatureDelegate?.epSignature!(self, didSign: signature, boundingRect: signatureView.getSignatureBoundsInCanvas())
+            signatureDelegate?.epSignature(self, didSign: signature, boundingRect: signatureView.getSignatureBoundsInCanvas())
             dismiss(animated: true, completion: nil)
         } else {
             showAlert("You did not sign", andTitle: "Please draw your signature")
         }
     }
     
-    func onTouchActionButton(_ barButton: UIBarButtonItem) {
+    @objc func onTouchActionButton(_ barButton: UIBarButtonItem) {
         let action = UIAlertController(title: "Action", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         action.view.tintColor = tintColor
         
@@ -142,7 +142,7 @@ open class EPSignatureViewController: UIViewController {
         present(action, animated: true, completion: nil)
     }
 
-    func onTouchClearButton() {
+    @objc func onTouchClearButton() {
         signatureView.clear()
     }
     
